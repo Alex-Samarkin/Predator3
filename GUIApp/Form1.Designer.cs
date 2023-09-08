@@ -58,8 +58,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(splitContainer2);
-            splitContainer1.Size = new Size(800, 450);
-            splitContainer1.SplitterDistance = 343;
+            splitContainer1.Size = new Size(856, 603);
+            splitContainer1.SplitterDistance = 367;
             splitContainer1.TabIndex = 0;
             // 
             // propertyGrid1
@@ -67,7 +67,7 @@
             propertyGrid1.Dock = DockStyle.Fill;
             propertyGrid1.Location = new Point(0, 0);
             propertyGrid1.Name = "propertyGrid1";
-            propertyGrid1.Size = new Size(343, 450);
+            propertyGrid1.Size = new Size(367, 603);
             propertyGrid1.TabIndex = 0;
             // 
             // splitContainer2
@@ -80,8 +80,8 @@
             // splitContainer2.Panel1
             // 
             splitContainer2.Panel1.Controls.Add(flowLayoutPanel1);
-            splitContainer2.Size = new Size(453, 450);
-            splitContainer2.SplitterDistance = 233;
+            splitContainer2.Size = new Size(485, 603);
+            splitContainer2.SplitterDistance = 312;
             splitContainer2.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -93,7 +93,7 @@
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(4);
-            flowLayoutPanel1.Size = new Size(453, 233);
+            flowLayoutPanel1.Size = new Size(485, 312);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // button1
@@ -122,7 +122,7 @@
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 2;
-            button3.Text = "Laplacian";
+            button3.Text = "Run";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -130,7 +130,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(856, 603);
             Controls.Add(splitContainer1);
             Name = "Form1";
             Text = "Form1";

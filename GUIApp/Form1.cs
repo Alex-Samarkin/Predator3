@@ -29,8 +29,11 @@ namespace GUIApp
 
         private void button3_Click(object sender, EventArgs e)
         {
-            r1.Laplacian();
-            r1.Plot();
+            for (int i = 0; i < 1000; i++)
+            {
+                r1.Run(false);
+                if(i%100 == 0) { r1.Run();}
+            }
         }
     }
 }

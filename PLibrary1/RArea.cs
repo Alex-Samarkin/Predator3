@@ -15,6 +15,7 @@ using System.Drawing;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
+using MathNet.Numerics.Statistics;
 
 namespace PLibrary1;
 
@@ -109,14 +110,15 @@ public class RArea
         }
 
         heatMapSeries.Data = dataArray;
-
+        
         // Add the HeatMapSeries to the PlotModel
         plotModel.Series.Add(heatMapSeries);
 
         // Create a color axis
         var colorAxis = new LinearColorAxis
         {
-            Position = AxisPosition.Right
+            Position = AxisPosition.Right,
+            Palette = OxyPalettes.BlueWhiteRed(100)
         };
 
         // Add the color axis to the PlotModel
@@ -125,12 +127,14 @@ public class RArea
         
 
         var f = new GraphForm();
+        f.Width = (int)W*3+50;
+        f.Height = (int)H*3+50;
         
         // Create a plot view and display the plot
         //  var plotView = new OxyPlot.WindowsForms.PlotView();
         f.plotView1.Model = plotModel;
 
-        f.ShowDialog();
+        f.Show();
     }
 
     public void Laplacian()
@@ -164,14 +168,22 @@ public class RArea
                     }
                 }
 
-                laplacianResult[i, j] = sum;
+                laplacianResult[i, j] = sum/8.0;
             }
         }
 
         // Print the Laplacian result
         // Console.WriteLine("Laplacian Result:");
         // Console.WriteLine(laplacianResult);
-        Field = laplacianResult;
+        var min = Statistics.Minimum(laplacianResult.Enumerate());
+        var max = Statistics.Maximum(laplacianResult.Enumerate());
+        Field = (laplacianResult.NormalizeRows(2)-min)/(max-min);
+    }
+
+    public void Run(bool Show = true)
+    {
+        Laplacian();
+        if (Show) Plot();
     }
 
 
