@@ -32,8 +32,26 @@ namespace GUIApp
             for (int i = 0; i < 1000; i++)
             {
                 r1.Run(false);
-                if(i%100 == 0) { r1.Run();}
+                if (i % 100 == 0) { r1.Run(); }
             }
+        }
+
+        public Koeff Koeff { get; set; } = new Koeff();
+        private void button4_Click(object sender, EventArgs e)
+        {
+            propertyGrid1.SelectedObject = Koeff;
+        }
+
+        public Agent Agent { get; set; } = new Agent();
+        private void button5_Click(object sender, EventArgs e)
+        {
+            propertyGrid1.SelectedObject = Agent;
+        }
+
+        public Virus Virus { get; set; } = new Virus();
+        private void button6_Click(object sender, EventArgs e)
+        {
+            propertyGrid1.SelectedObject = Virus;
         }
     }
 }
