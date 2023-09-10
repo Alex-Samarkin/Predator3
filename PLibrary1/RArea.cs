@@ -127,8 +127,10 @@ public class RArea
         
 
         var f = new GraphForm();
-        f.Width = (int)W*3+50;
-        f.Height = (int)H*3+50;
+        var k1 = W / H;
+        var HSize = (int)900;
+        f.Width = HSize;
+        f.Height = (int)(HSize/k1);
         
         // Create a plot view and display the plot
         //  var plotView = new OxyPlot.WindowsForms.PlotView();

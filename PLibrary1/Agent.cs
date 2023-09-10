@@ -43,7 +43,7 @@ public enum GenderState
 /// <summary>
 /// отдельный индивидуум
 /// </summary>
-public class Agent
+public class Agent 
 {
     /// <summary>
     /// условный идентификатор
@@ -54,6 +54,11 @@ public class Agent
     /// номер агента в структурах типа вектора
     /// </summary>
     public int Index { get; set; } = 0;
+
+    /// <summary>
+    /// имя
+    /// </summary>
+    public string Name { get; set; } =  "";
 
     /// <summary>
     /// координата х
@@ -94,7 +99,11 @@ public class Agent
     [TypeConverter(typeof(ExpandableObjectConverter))]
     public Koeff Koeff { get; set; } = new Koeff(){Kinf = 1, Kdead = 0, Ke = 0, Khard = 1,Ki=1};
 
+    [TypeConverter(typeof(ExpandableObjectConverter))]
+    public Virus Virus { get; set; } = new Virus();
+
     public CovidState State { get; set; } = CovidState.Suspected;
+
     public HealState Heal { get; set; } = HealState.Ok;
     /// <summary>
     /// моделируется движение агента
@@ -114,8 +123,15 @@ public class Agent
         /// Normalize angle to -pi +pi
         angle = angle - 2 * Math.PI * Math.Floor(angle / (2 * Math.PI));
     }
-
+    /// <summary>
+    /// время жизни с момента начала моделирования
+    /// 
+    /// </summary>
     public double TimeFromStart { get; set; } = 0;
+    /// <summary>
+    /// время с момента смены состояния
+    /// </summary>
+    public double TimeOfState { get; set; } = 0;
     /// <summary>
     /// проверка расстояния
     /// </summary>
@@ -180,7 +196,20 @@ public class Agent
        return true;
     }
 
+    public void SetState(CovidState state)
+    {
+        State = state;
+        TimeOfState = 0;
+    }
+
+    public Agent Clone()
+    {
+        return (Agent) this.MemberwiseClone();
+    }
+
     // TODO Добавить проверку контакта с инфицированным
 
     // TODO добавить проверку земли на предмет усиления действия вируса
+
+
 }

@@ -46,12 +46,53 @@ namespace GUIApp
         private void button5_Click(object sender, EventArgs e)
         {
             propertyGrid1.SelectedObject = Agent;
+
+            AgentGenerator generator = new AgentGenerator();
+            //generator.Seed = generator.Rnd.Next();
+            //generator.ResetRng();
+
+            generator.BuildNewAgent();
+
+            Agent = generator.NewAgent;
         }
 
         public Virus Virus { get; set; } = new Virus();
         private void button6_Click(object sender, EventArgs e)
         {
             propertyGrid1.SelectedObject = Virus;
+        }
+
+        public AgentGenerator Generator { get; set; } = new AgentGenerator();
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Generator.Xmax = r1.W;
+            Generator.Ymax = r1.H;
+            propertyGrid1.SelectedObject = Generator;
+        }
+
+        public Agents Agents { get; set; } = new Agents();
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Agents.FillWithGenerator(50000, Generator, true);
+            Agents.InfectNPeoples(100);
+            propertyGrid1.SelectedObject = Agents;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Agents.Plot(r1);
+            Agents.Run(r1);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            var infected = Agents.InfectedAgents();
+            foreach (Agent agent in infected)
+            {
+                var tmp = Agents.SuspectedNear(agent, 10);
+            }
+            Agents.PlotList(r1, Agents.InfectedAgents());
+            propertyGrid1.SelectedObject = Agents;
         }
     }
 }

@@ -48,4 +48,11 @@ public class Koeff
     /// </summary>
     public double Khard { get; set; } = 1;
 
+    /// <summary>
+    /// поправка на среднюю длину периода приобретенного иммунитета
+    /// 0 - не меняется, -1 - отсутствует, 1 - удваивается
+    /// E = E вируса * (1+Ke)
+    /// </summary>
+    public double Kimm { get; set; } = 0;
+
 }
