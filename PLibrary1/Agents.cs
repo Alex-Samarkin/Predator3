@@ -29,6 +29,8 @@ public class Agents
     public double Maxa { get; set; } = 1;
     public double MaxV { get; set; } = 5;
 
+    public double DistanceToInfection { get; set; } = 6;
+
     public int Seed { get; set; } = 42;
     public RandomSource Rnd { get; set; } = new MersenneTwister();
 
@@ -42,7 +44,9 @@ public class Agents
 
         for (int i = 0; i < NewAgentsCount; i++)
         {
-            Items.Add(generator.BuildNewAgent());
+            var agent = generator.BuildNewAgent();
+            agent.Index = i;
+            Items.Add(agent);
         }
     }
 
@@ -60,17 +64,43 @@ public class Agents
             Items[index].SetState(CovidState.Infected);
         }
     }
-    
+    public void VaccinateNPeoples(int N)
+    {
+        var unvaccinated = Items.Where(a => (a.State != CovidState.Infected));
+        var Indexes = new SortedSet<int>();
+
+        while (Indexes.Count < N)
+        {
+            Indexes.Add(Rnd.Next(Items.Count));
+        }
+
+        foreach (int index in Indexes)
+        {
+            Items[index].SetState(CovidState.Vaccinated);
+        }
+    }
     public void Clear() { Items.Clear(); }
 
-    public void Run(RArea r1)
+    public void Run(RArea r1, bool Show = false)
     {
+        IncTime();
         Move();
         UpdateVA(r1);
-
-        Plot(r1);
+        UpdateHeal();
+        if (Show)
+        {
+            Plot(r1);
+        }
     }
-
+    //00 Увеличить время жизни и время состояния агентов на 1 день
+    public void IncTime(int Step = 1)
+    {
+        foreach (Agent agent in Items)
+        {
+            agent.TimeFromStart += Step;
+            agent.TimeOfState += Step;
+        }
+    }
     //01 Переместить всех агентов
     public void Move()
     {
@@ -100,7 +130,65 @@ public class Agents
 
     public void UpdateHeal()
     {
+        /// Процесс заражения
+        /// 01 Ищем всех зараженных
+        var infected = this.InfectedAgents();
+        /// 02 Для каждого зараженного
+        foreach (Agent agent in infected)
+        {
+            /// 03 Ищем всех незараженных (со статусом Suspected) на заданном расстоянии
+            var suspected = this.SuspectedNear(agent,DistanceToInfection);
+            /// 04 Для каждого незараженного
+            foreach (Agent agent1 in suspected)
+            {
+                /// 05 если за это время его статус не изменился (например, в другом потоке)
+                if (agent1.State == CovidState.Suspected)
+                {
+                    /// 06 Пробуем заразить
+                    /// Для этого генерируем случайное число от 0 до 1
+                    /// Сравниваем с локальным для человека вирусом (там заданы все поправки)
+                    /// Например, вирус имеет вероятность заражения 0,3
+                    /// Человек имеет поправочный коэффициент 0,8
+                    /// Вероятность заражения 0,3*0,8=0,24
+                    /// Генератор выдал число 0,6 - заражения не происходит
+                    /// Генератор выдал 0,15 - происходит заражение,
+                    /// агент получает статус Exposed
+                    agent1.TryToInfect(Rnd.NextDouble());
+                }
+            }
+        }
+        /// Процессы перехода
+        
+        /// Infected - Dead or Recover
+        /// 01 Для каждого зараженного, у которого истекло время болезни
+        var infected1 = infected.Where(a => a.TimeOfState > a.Virus.InfectedDuration).ToList();
+        foreach (Agent agent in infected1)
+        {
+            /// 02 Каждый заболевший может получить статус как выздоровевшего, так и умершего
+            /// у выздоровевшего отмеряется время до окончания иммунитета
+            agent.TryToRecover(Rnd.NextDouble());
+        }
 
+        /// Exposed - Infected
+        var exposed = ExposedAgents().Where(a => a.TimeOfState > a.Virus.ExposedDuration).ToList();
+        foreach (Agent agent in exposed)
+        {
+            agent.SetState(CovidState.Infected);
+        }
+
+        /// Recover - Suspected
+        var recover = RecoveredAgents().Where(a => a.TimeOfState > a.Virus.ImmunityDuration).ToList();
+        foreach (Agent agent in exposed)
+        {
+            agent.SetState(CovidState.Suspected);
+        }
+
+        /// Vaccinated - Suspected
+        var vaccinated = VaccinatedAgents().Where(a => a.TimeOfState > a.Virus.ImmunityDuration).ToList();
+        foreach (Agent agent in exposed)
+        {
+            agent.SetState(CovidState.Suspected);
+        }
     }
 
     public void UpdateFromArea() { }

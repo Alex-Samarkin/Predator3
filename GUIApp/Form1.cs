@@ -1,4 +1,5 @@
 using PLibrary1;
+using Region = PLibrary1.Region;
 
 namespace GUIApp
 {
@@ -73,7 +74,7 @@ namespace GUIApp
         public Agents Agents { get; set; } = new Agents();
         private void button8_Click(object sender, EventArgs e)
         {
-            Agents.FillWithGenerator(50000, Generator, true);
+            Agents.FillWithGenerator(7000, Generator, true);
             Agents.InfectNPeoples(100);
             propertyGrid1.SelectedObject = Agents;
         }
@@ -87,12 +88,104 @@ namespace GUIApp
         private void button10_Click(object sender, EventArgs e)
         {
             var infected = Agents.InfectedAgents();
-            foreach (Agent agent in infected)
-            {
-                var tmp = Agents.SuspectedNear(agent, 10);
-            }
-            Agents.PlotList(r1, Agents.InfectedAgents());
-            propertyGrid1.SelectedObject = Agents;
+            Agents.PlotList(r1, infected);
+            propertyGrid1.SelectedObject = infected;
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            var suspected = Agents.SuspectedAgents();
+            Agents.PlotList(r1, suspected);
+            propertyGrid1.SelectedObject = suspected;
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            var exposed = Agents.ExposedAgents();
+            Agents.PlotList(r1, exposed);
+            propertyGrid1.SelectedObject = exposed;
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            var recovered = Agents.RecoveredAgents();
+            Agents.PlotList(r1, recovered);
+            propertyGrid1.SelectedObject = recovered;
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            var dead = Agents.DeadAgents();
+            Agents.PlotList(r1, dead);
+            propertyGrid1.SelectedObject = dead;
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            var vaccinated = Agents.VaccinatedAgents();
+            Agents.PlotList(r1, vaccinated);
+            propertyGrid1.SelectedObject = vaccinated;
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            Agents.Run(r1);
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            var n = trackBar1.Value;
+            for (int i = 0; i < n; i++)
+            {
+                Agents.Run(r1);
+            }
+        }
+
+        public Area Area { get; set; } = new Area();
+        private void button18_Click(object sender, EventArgs e)
+        {
+            Area.Init(42, 500, 500, 0.1, 42000, 400, 0);
+            propertyGrid1.SelectedObject = Area;
+            Area.RArea.Plot();
+            Area.Agents.Plot(Area.RArea);
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            Area.Run1();
+            Area.RArea.Plot();
+            Area.Agents.Plot(Area.RArea);
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            Area.RunN();
+            Area.RArea.Plot();
+            Area.Agents.Plot(Area.RArea);
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            Region.Init();
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            Region.Run1();
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            Region.RunN();
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            // Region.RunAll();
+            Region.RunAsync();
+        }
+
+        public Region Region { get; set; } = new Region();
+
     }
 }

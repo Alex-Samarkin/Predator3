@@ -207,6 +207,25 @@ public class Agent
         return (Agent) this.MemberwiseClone();
     }
 
+    public void TryToInfect(double rate)
+    {
+        if (rate < Virus.Kinf)
+        {
+            SetState(CovidState.Exposed);
+        }
+    }
+    public void TryToRecover(double rate)
+    {
+        if (rate < Virus.Kdead)
+        {
+            SetState(CovidState.Dead);
+        }
+        else
+        {
+            SetState(CovidState.Recovered);
+        }
+    }
+
     // TODO Добавить проверку контакта с инфицированным
 
     // TODO добавить проверку земли на предмет усиления действия вируса

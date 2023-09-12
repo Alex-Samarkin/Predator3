@@ -42,6 +42,21 @@
             button8 = new Button();
             button9 = new Button();
             button10 = new Button();
+            button11 = new Button();
+            button12 = new Button();
+            button13 = new Button();
+            button14 = new Button();
+            button15 = new Button();
+            button16 = new Button();
+            button17 = new Button();
+            trackBar1 = new TrackBar();
+            button18 = new Button();
+            button19 = new Button();
+            button20 = new Button();
+            button21 = new Button();
+            button22 = new Button();
+            button23 = new Button();
+            button24 = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -50,6 +65,7 @@
             splitContainer2.Panel1.SuspendLayout();
             splitContainer2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             SuspendLayout();
             // 
             // splitContainer1
@@ -103,6 +119,21 @@
             flowLayoutPanel1.Controls.Add(button8);
             flowLayoutPanel1.Controls.Add(button9);
             flowLayoutPanel1.Controls.Add(button10);
+            flowLayoutPanel1.Controls.Add(button11);
+            flowLayoutPanel1.Controls.Add(button12);
+            flowLayoutPanel1.Controls.Add(button13);
+            flowLayoutPanel1.Controls.Add(button14);
+            flowLayoutPanel1.Controls.Add(button15);
+            flowLayoutPanel1.Controls.Add(button16);
+            flowLayoutPanel1.Controls.Add(button17);
+            flowLayoutPanel1.Controls.Add(trackBar1);
+            flowLayoutPanel1.Controls.Add(button18);
+            flowLayoutPanel1.Controls.Add(button19);
+            flowLayoutPanel1.Controls.Add(button20);
+            flowLayoutPanel1.Controls.Add(button21);
+            flowLayoutPanel1.Controls.Add(button22);
+            flowLayoutPanel1.Controls.Add(button23);
+            flowLayoutPanel1.Controls.Add(button24);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -206,9 +237,161 @@
             button10.Name = "button10";
             button10.Size = new Size(75, 23);
             button10.TabIndex = 9;
-            button10.Text = "button10";
+            button10.Text = "Infected";
             button10.UseVisualStyleBackColor = true;
             button10.Click += button10_Click;
+            // 
+            // button11
+            // 
+            button11.Location = new Point(331, 36);
+            button11.Name = "button11";
+            button11.Size = new Size(75, 23);
+            button11.TabIndex = 10;
+            button11.Text = "Suspected";
+            button11.UseVisualStyleBackColor = true;
+            button11.Click += button11_Click;
+            // 
+            // button12
+            // 
+            button12.Location = new Point(412, 36);
+            button12.Name = "button12";
+            button12.Size = new Size(75, 23);
+            button12.TabIndex = 11;
+            button12.Text = "Exposed";
+            button12.UseVisualStyleBackColor = true;
+            button12.Click += button12_Click;
+            // 
+            // button13
+            // 
+            button13.Location = new Point(7, 65);
+            button13.Name = "button13";
+            button13.Size = new Size(75, 23);
+            button13.TabIndex = 12;
+            button13.Text = "Recovered";
+            button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
+            // 
+            // button14
+            // 
+            button14.Location = new Point(88, 65);
+            button14.Name = "button14";
+            button14.Size = new Size(75, 23);
+            button14.TabIndex = 13;
+            button14.Text = "Dead";
+            button14.UseVisualStyleBackColor = true;
+            button14.Click += button14_Click;
+            // 
+            // button15
+            // 
+            button15.Location = new Point(169, 65);
+            button15.Name = "button15";
+            button15.Size = new Size(75, 23);
+            button15.TabIndex = 14;
+            button15.Text = "Vaccinated";
+            button15.UseVisualStyleBackColor = true;
+            button15.Click += button15_Click;
+            // 
+            // button16
+            // 
+            button16.Location = new Point(250, 65);
+            button16.Name = "button16";
+            button16.Size = new Size(75, 23);
+            button16.TabIndex = 15;
+            button16.Text = "Run 1";
+            button16.UseVisualStyleBackColor = true;
+            button16.Click += button16_Click;
+            // 
+            // button17
+            // 
+            flowLayoutPanel1.SetFlowBreak(button17, true);
+            button17.Location = new Point(331, 65);
+            button17.Name = "button17";
+            button17.Size = new Size(75, 23);
+            button17.TabIndex = 17;
+            button17.Text = "RunN";
+            button17.UseVisualStyleBackColor = true;
+            button17.Click += button17_Click;
+            // 
+            // trackBar1
+            // 
+            trackBar1.Location = new Point(7, 94);
+            trackBar1.Maximum = 100;
+            trackBar1.Minimum = 2;
+            trackBar1.Name = "trackBar1";
+            trackBar1.Size = new Size(156, 45);
+            trackBar1.TabIndex = 16;
+            trackBar1.Value = 5;
+            // 
+            // button18
+            // 
+            button18.Location = new Point(169, 94);
+            button18.Name = "button18";
+            button18.Size = new Size(75, 23);
+            button18.TabIndex = 18;
+            button18.Text = "Area Init";
+            button18.UseVisualStyleBackColor = true;
+            button18.Click += button18_Click;
+            // 
+            // button19
+            // 
+            button19.Location = new Point(250, 94);
+            button19.Name = "button19";
+            button19.Size = new Size(75, 23);
+            button19.TabIndex = 19;
+            button19.Text = "Area Run";
+            button19.UseVisualStyleBackColor = true;
+            button19.Click += button19_Click;
+            // 
+            // button20
+            // 
+            flowLayoutPanel1.SetFlowBreak(button20, true);
+            button20.Location = new Point(331, 94);
+            button20.Name = "button20";
+            button20.Size = new Size(75, 23);
+            button20.TabIndex = 20;
+            button20.Text = "Area RunN";
+            button20.UseVisualStyleBackColor = true;
+            button20.Click += button20_Click;
+            // 
+            // button21
+            // 
+            button21.Location = new Point(7, 145);
+            button21.Name = "button21";
+            button21.Size = new Size(75, 23);
+            button21.TabIndex = 21;
+            button21.Text = "Region Init";
+            button21.UseVisualStyleBackColor = true;
+            button21.Click += button21_Click;
+            // 
+            // button22
+            // 
+            button22.Location = new Point(88, 145);
+            button22.Name = "button22";
+            button22.Size = new Size(75, 23);
+            button22.TabIndex = 22;
+            button22.Text = "Reg Run1";
+            button22.UseVisualStyleBackColor = true;
+            button22.Click += button22_Click;
+            // 
+            // button23
+            // 
+            button23.Location = new Point(169, 145);
+            button23.Name = "button23";
+            button23.Size = new Size(75, 23);
+            button23.TabIndex = 23;
+            button23.Text = "Reg RunN";
+            button23.UseVisualStyleBackColor = true;
+            button23.Click += button23_Click;
+            // 
+            // button24
+            // 
+            button24.Location = new Point(250, 145);
+            button24.Name = "button24";
+            button24.Size = new Size(156, 23);
+            button24.TabIndex = 24;
+            button24.Text = "Reg Run Full";
+            button24.UseVisualStyleBackColor = true;
+            button24.Click += button24_Click;
             // 
             // Form1
             // 
@@ -226,6 +409,8 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
             ResumeLayout(false);
         }
 
@@ -245,5 +430,20 @@
         private Button button8;
         private Button button9;
         private Button button10;
+        private Button button11;
+        private Button button12;
+        private Button button13;
+        private Button button14;
+        private Button button15;
+        private Button button16;
+        private TrackBar trackBar1;
+        private Button button17;
+        private Button button18;
+        private Button button19;
+        private Button button20;
+        private Button button21;
+        private Button button22;
+        private Button button23;
+        private Button button24;
     }
 }

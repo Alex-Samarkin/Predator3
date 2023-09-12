@@ -34,6 +34,8 @@ public class AgentGenerator
     public double Amax { get; set; } = 2;
     public double dAmax { get; set; } = 0.5;
 
+    public Virus vrs { get; set; } = new Virus();
+
     public Agent BuildNewAgent()
     {
         Init();
@@ -145,7 +147,7 @@ public class AgentGenerator
 
     public void AddVirus()
     {
-        var vrs = new Virus();
+        vrs ??= new Virus();
 
         vrs.Kdead *= NewAgent.Koeff.Kdead;
         vrs.Kinf *= NewAgent.Koeff.Kinf;
