@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Население области">
+    <Position X="5.698" Y="0.542" Height="0.427" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Генератор индивидуумов по заданным параметрам">
+    <Position X="1.25" Y="0.5" Height="0.594" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Индивидуум">
+    <Position X="3.219" Y="0.5" Height="0.375" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Область с населением внутри региона">
+    <Position X="8.833" Y="0.521" Height="0.521" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Регион - связанные транспортом области с населением">
+    <Position X="15.469" Y="0.635" Height="0.458" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Состояние пациента&#xD;&#xA;SEIRDV">
+    <Position X="13.521" Y="6.562" Height="0.5" Width="1.7" />
+  </Comment>
+  <Class Name="PLibrary1.Agent">
+    <Position X="3" Y="1" Width="1.5" />
+    <AssociationLine Name="Virus" Type="PLibrary1.Virus" ManuallyRouted="true">
+      <Path>
+        <Point X="3.422" Y="6.593" />
+        <Point X="3.422" Y="9.864" />
+        <Point X="9.696" Y="9.864" />
+        <Point X="9.696" Y="9.5" />
+        <Point X="10.75" Y="9.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Virus" />
+      <Property Name="Koeff" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PLibrary1.Agents">
+    <Position X="5" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PLibrary1.Area">
+    <Position X="10" Y="1" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Agents" />
+      <Property Name="RArea" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PLibrary1.AgentGenerator">
+    <Position X="0.75" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PLibrary1.DGraphForm">
+    <Position X="11.75" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PLibrary1.GraphForm">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PLibrary1.Pt">
+    <Position X="0.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PLibrary1.Koeff">
+    <Position X="9" Y="6.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PLibrary1.Virus">
+    <Position X="10.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PLibrary1.PTimer">
+    <Position X="13.75" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PLibrary1.RArea">
+    <Position X="6.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PLibrary1.Region">
+    <Position X="16.25" Y="1" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Timer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PLibrary1.CovidState">
+    <Position X="12.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
