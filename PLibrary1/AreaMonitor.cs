@@ -109,7 +109,11 @@ namespace PLibrary1
             pv.Model = plotModel;
 
         }
-
+        /// <summary>
+        /// Plot XY
+        /// </summary>
+        /// <param name="agents"> </param>
+        /// <param name="pv"> </param>
         public void PlotXY(Agents agents, PlotView pv)
         {
 
