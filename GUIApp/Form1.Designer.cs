@@ -57,15 +57,22 @@
             button22 = new Button();
             button23 = new Button();
             button24 = new Button();
+            label1 = new Label();
+            numericUpDown1 = new NumericUpDown();
+            label2 = new Label();
+            plotView1 = new OxyPlot.WindowsForms.PlotView();
+            button25 = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
             splitContainer2.Panel1.SuspendLayout();
+            splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // splitContainer1
@@ -103,6 +110,10 @@
             // splitContainer2.Panel1
             // 
             splitContainer2.Panel1.Controls.Add(flowLayoutPanel1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            splitContainer2.Panel2.Controls.Add(plotView1);
             splitContainer2.Size = new Size(502, 603);
             splitContainer2.SplitterDistance = 312;
             splitContainer2.TabIndex = 0;
@@ -134,6 +145,10 @@
             flowLayoutPanel1.Controls.Add(button22);
             flowLayoutPanel1.Controls.Add(button23);
             flowLayoutPanel1.Controls.Add(button24);
+            flowLayoutPanel1.Controls.Add(label1);
+            flowLayoutPanel1.Controls.Add(numericUpDown1);
+            flowLayoutPanel1.Controls.Add(label2);
+            flowLayoutPanel1.Controls.Add(button25);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -385,6 +400,7 @@
             // 
             // button24
             // 
+            flowLayoutPanel1.SetFlowBreak(button24, true);
             button24.Location = new Point(250, 145);
             button24.Name = "button24";
             button24.Size = new Size(156, 23);
@@ -392,6 +408,57 @@
             button24.Text = "Reg Run Full";
             button24.UseVisualStyleBackColor = true;
             button24.Click += button24_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(7, 171);
+            label1.Name = "label1";
+            label1.Size = new Size(16, 15);
+            label1.TabIndex = 26;
+            label1.Text = "N";
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(29, 174);
+            numericUpDown1.Maximum = new decimal(new int[] { 21, 0, 0, 0 });
+            numericUpDown1.Minimum = new decimal(new int[] { 2, 0, 0, 0 });
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(120, 23);
+            numericUpDown1.TabIndex = 25;
+            numericUpDown1.Value = new decimal(new int[] { 7, 0, 0, 0 });
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(155, 171);
+            label2.Name = "label2";
+            label2.Size = new Size(86, 15);
+            label2.TabIndex = 27;
+            label2.Text = "time/S/E/I/R/D";
+            // 
+            // plotView1
+            // 
+            plotView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            plotView1.Location = new Point(7, 3);
+            plotView1.Name = "plotView1";
+            plotView1.PanCursor = Cursors.Hand;
+            plotView1.Size = new Size(492, 281);
+            plotView1.TabIndex = 0;
+            plotView1.Text = "plotView1";
+            plotView1.ZoomHorizontalCursor = Cursors.SizeWE;
+            plotView1.ZoomRectangleCursor = Cursors.SizeNWSE;
+            plotView1.ZoomVerticalCursor = Cursors.SizeNS;
+            // 
+            // button25
+            // 
+            button25.Location = new Point(247, 174);
+            button25.Name = "button25";
+            button25.Size = new Size(75, 23);
+            button25.TabIndex = 1;
+            button25.Text = "ToCSV";
+            button25.UseVisualStyleBackColor = true;
+            button25.Click += button25_Click;
             // 
             // Form1
             // 
@@ -406,11 +473,13 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             splitContainer2.Panel1.ResumeLayout(false);
+            splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
         }
 
@@ -445,5 +514,10 @@
         private Button button22;
         private Button button23;
         private Button button24;
+        private Label label1;
+        private NumericUpDown numericUpDown1;
+        private Label label2;
+        private OxyPlot.WindowsForms.PlotView plotView1;
+        private Button button25;
     }
 }

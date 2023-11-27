@@ -1,5 +1,8 @@
+using OxyPlot.Series;
+using OxyPlot;
 using PLibrary1;
 using Region = PLibrary1.Region;
+using System.IO;
 
 namespace GUIApp
 {
@@ -166,26 +169,122 @@ namespace GUIApp
 
         private void button21_Click(object sender, EventArgs e)
         {
-            Region.Init();
+            Region60.Init();
+            label2.Text = Region60.Monitor();
         }
 
         private void button22_Click(object sender, EventArgs e)
         {
-            Region.Run1();
+            Region60.Run1();
+            label2.Text = Region60.Monitor();
         }
 
         private void button23_Click(object sender, EventArgs e)
         {
-            Region.RunN();
+            var n = (int)numericUpDown1.Value;
+            Region60.RunN(n);
+            foreach (var area in Region60.Areas)
+            {
+                area.Agents.Plot2(Area.RArea);
+            }
+            label2.Text = Region60.Monitor();
+            PlotSEIR();
         }
 
         private void button24_Click(object sender, EventArgs e)
         {
-            // Region.RunAll();
-            Region.RunAsync();
+            Region60.RunAll();
+            //Region60.RunAsync();
+            foreach (var area in Region60.Areas)
+            {
+                area.Agents.Plot(Area.RArea);
+            }
+            label2.Text = Region60.Monitor();
         }
 
-        public Region Region { get; set; } = new Region();
+        public Region Region60 { get; set; } = new Region();
 
+        public void PlotSEIR()
+        {
+            var plotModel = new PlotModel { Title = "SEIRD" };
+
+            var SscatterSeries = new ScatterSeries()
+            {
+                MarkerType = MarkerType.Circle,
+                MarkerSize = 2,
+                MarkerFill = OxyColor.FromRgb(0, 0, 200)
+            };
+            var EscatterSeries = new ScatterSeries()
+            {
+                MarkerType = MarkerType.Circle,
+                MarkerSize = 2,
+                MarkerFill = OxyColor.FromRgb(100, 100, 0)
+            };
+            var IscatterSeries = new ScatterSeries()
+            {
+                MarkerType = MarkerType.Star,
+                MarkerSize = 2,
+                MarkerFill = OxyColor.FromRgb(200, 0, 0)
+            };
+            var RscatterSeries = new ScatterSeries()
+            {
+                MarkerType = MarkerType.Circle,
+                MarkerSize = 2,
+                MarkerFill = OxyColor.FromRgb(0, 200, 0)
+            };
+            var DscatterSeries = new ScatterSeries()
+            {
+                MarkerType = MarkerType.Cross,
+                MarkerSize = 2,
+                MarkerFill = OxyColor.FromRgb(20, 20, 20)
+            };
+            var i = 0;
+            foreach (var s in Region60.Suspected())
+            {
+
+                SscatterSeries.Points.Add(new ScatterPoint(i, s));
+                i++;
+
+            }
+            plotModel.Series.Add(SscatterSeries);
+            i = 0;
+            foreach (var s in Region60.Exposed())
+            {
+
+                EscatterSeries.Points.Add(new ScatterPoint(i, s));
+                i++;
+            }
+            plotModel.Series.Add(EscatterSeries);
+            i = 0;
+            foreach (var s in Region60.Infected())
+            {
+                IscatterSeries.Points.Add(new ScatterPoint(i, s));
+                i++;
+            }
+            plotModel.Series.Add(IscatterSeries);
+            i = 0;
+            foreach (var s in Region60.Recovered())
+            {
+                RscatterSeries.Points.Add(new ScatterPoint(i, s));
+                i++;
+            }
+            plotModel.Series.Add(RscatterSeries);
+            i = 0;
+            foreach (var s in Region60.Dead())
+            {
+                DscatterSeries.Points.Add(new ScatterPoint(i, s));
+                i++;
+            }
+            plotModel.Series.Add(DscatterSeries);
+            plotView1.Model = plotModel;
+            plotModel.InvalidatePlot(true);
+
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            var file = "temp.csv";
+            File.WriteAllText(file, Region60.ToCSV());
+        }
     }
 }

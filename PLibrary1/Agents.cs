@@ -24,12 +24,12 @@ public class Agents
     public List<Agent> Items { get; set; } =new List<Agent>();
     public int Count => Items.Count;
 
-    public double MaxDa { get; set; } = 0.1;
+    public double MaxDa { get; set; } = 0.2;
     public double MaxDAngle { get; set; } = 30.0 * Math.PI / 180.0;
-    public double Maxa { get; set; } = 1;
-    public double MaxV { get; set; } = 5;
+    public double Maxa { get; set; } = 2;
+    public double MaxV { get; set; } = 10;
 
-    public double DistanceToInfection { get; set; } = 6;
+    public double DistanceToInfection { get; set; } = 4;
 
     public int Seed { get; set; } = 42;
     public RandomSource Rnd { get; set; } = new MersenneTwister();
@@ -158,10 +158,10 @@ public class Agents
             }
         }
         /// Процессы перехода
-        
+
         /// Infected - Dead or Recover
         /// 01 Для каждого зараженного, у которого истекло время болезни
-        var infected1 = infected.Where(a => a.TimeOfState > a.Virus.InfectedDuration).ToList();
+        var infected1 = infected.Where(a => a.TimeOfState >= a.Virus.InfectedDuration);//.ToList();
         foreach (Agent agent in infected1)
         {
             /// 02 Каждый заболевший может получить статус как выздоровевшего, так и умершего
@@ -170,21 +170,21 @@ public class Agents
         }
 
         /// Exposed - Infected
-        var exposed = ExposedAgents().Where(a => a.TimeOfState > a.Virus.ExposedDuration).ToList();
+        var exposed = ExposedAgents().Where(a => a.TimeOfState > a.Virus.ExposedDuration);//.ToList();
         foreach (Agent agent in exposed)
         {
             agent.SetState(CovidState.Infected);
         }
 
         /// Recover - Suspected
-        var recover = RecoveredAgents().Where(a => a.TimeOfState > a.Virus.ImmunityDuration).ToList();
+        var recover = RecoveredAgents().Where(a => a.TimeOfState > a.Virus.ImmunityDuration);//.ToList();
         foreach (Agent agent in exposed)
         {
             agent.SetState(CovidState.Suspected);
         }
 
         /// Vaccinated - Suspected
-        var vaccinated = VaccinatedAgents().Where(a => a.TimeOfState > a.Virus.ImmunityDuration).ToList();
+        var vaccinated = VaccinatedAgents().Where(a => a.TimeOfState > a.Virus.ImmunityDuration);//.ToList();
         foreach (Agent agent in exposed)
         {
             agent.SetState(CovidState.Suspected);
@@ -199,17 +199,88 @@ public class Agents
     {
         var plotModel = new PlotModel { Title = "Agent Locations" };
 
+        var scatterSeries = new ScatterSeries()
+        {
+            MarkerType = MarkerType.Circle,
+            MarkerSize = 2,
+            MarkerFill = OxyColor.FromRgb(10, 10, (byte)Rnd.Next(120, 220))
+        };
+
         foreach (var agent in Items)
         {
-            var scatterSeries = new ScatterSeries()
-            {
-                MarkerType = MarkerType.Circle,
-                MarkerSize = 2,
-                MarkerFill = OxyColor.FromRgb(10,10,(byte)Rnd.Next(50,220))
-            };
+            
             scatterSeries.Points.Add(new ScatterPoint(agent.x, agent.y));
-            plotModel.Series.Add(scatterSeries);
+            
         }
+        
+        plotModel.Series.Add(scatterSeries);
+        
+        var f = new GraphForm();
+        var k1 = r1.W / r1.H;
+        var HSize = (int)900;
+        f.Width = HSize;
+        f.Height = (int)(HSize / k1);
+
+        // Create a plot view and display the plot
+        //  var plotView = new OxyPlot.WindowsForms.PlotView();
+        f.plotView1.Model = plotModel;
+
+        f.Show();
+    }
+    public void Plot2(RArea r1)
+    {
+        var plotModel = new PlotModel { Title = "Agent Locations" };
+
+        var SscatterSeries = new ScatterSeries()
+        {
+            MarkerType = MarkerType.Circle,
+            MarkerSize = 2,
+            MarkerFill = OxyColor.FromRgb(10, 10, 180)
+        };
+        var EscatterSeries = new ScatterSeries()
+        {
+            MarkerType = MarkerType.Circle,
+            MarkerSize = 2,
+            MarkerFill = OxyColor.FromRgb(110, 10, 10)
+        };
+        var IscatterSeries = new ScatterSeries()
+        {
+            MarkerType = MarkerType.Triangle,
+            MarkerSize = 2,
+            MarkerFill = OxyColor.FromRgb(220, 10, 10)
+        };
+        var RscatterSeries = new ScatterSeries()
+        {
+            MarkerType = MarkerType.Circle,
+            MarkerSize = 2,
+            MarkerFill = OxyColor.FromRgb(10, 180, 10)
+        };
+        var DscatterSeries = new ScatterSeries()
+        {
+            MarkerType = MarkerType.Cross,
+            MarkerSize = 2,
+            MarkerFill = OxyColor.FromRgb(10, 10, 10)
+        };
+
+        foreach (var agent in Items)
+        {
+            if (agent.State == CovidState.Suspected)
+                SscatterSeries.Points.Add(new ScatterPoint(agent.x, agent.y));
+            if (agent.State == CovidState.Exposed)
+                EscatterSeries.Points.Add(new ScatterPoint(agent.x, agent.y));
+            if (agent.State == CovidState.Infected)
+                IscatterSeries.Points.Add(new ScatterPoint(agent.x, agent.y));
+            if (agent.State == CovidState.Recovered)
+                RscatterSeries.Points.Add(new ScatterPoint(agent.x, agent.y));
+            if (agent.State == CovidState.Dead)
+                DscatterSeries.Points.Add(new ScatterPoint(agent.x, agent.y));
+        }
+
+        plotModel.Series.Add(SscatterSeries);
+        plotModel.Series.Add(EscatterSeries);
+        plotModel.Series.Add(IscatterSeries);
+        plotModel.Series.Add(RscatterSeries);
+        plotModel.Series.Add(DscatterSeries);
 
         var f = new GraphForm();
         var k1 = r1.W / r1.H;

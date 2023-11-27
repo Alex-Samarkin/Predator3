@@ -16,7 +16,7 @@ public class Area
     public string Name = "Pskov1";
     public int Peoples { get; set; } = 40000;
     [TypeConverter(typeof(ExpandableObjectConverter))]
-    [DisplayName("Генератор"),Description("Генератор населения на выбранной площадке. Настроен на Псковскую область.")]
+    [DisplayName("Генератор"), Description("Генератор населения на выбранной площадке. Настроен на Псковскую область.")]
     public AgentGenerator Generator { get; set; } = new AgentGenerator();
     [TypeConverter(typeof(ExpandableObjectConverter))]
     [DisplayName("Площадка"), Description("Участок региона, на котором происходит моделирование.")]
@@ -28,7 +28,7 @@ public class Area
     [DisplayName("Вирус"), Description("Основные параметры вирусной инфекции. Моделируется усредненный COVID-19")]
     public Virus Virus { get; set; } = new Virus();
 
-    public void Init(int Seed,double W, double H,double FillRatio = 0.1, int peoples=40000, int InfectedAtStart = 40, int Vaccinate = 0 )
+    public void Init(int Seed, double W, double H, double FillRatio = 0.1, int peoples = 40000, int InfectedAtStart = 40, int Vaccinate = 0)
     {
         Peoples = peoples;
 
@@ -36,14 +36,14 @@ public class Area
         RArea.W = W;
         RArea.H = H;
         RArea.ResetField();
-        RArea.RandomFill( (int)(W*H *FillRatio));
+        RArea.RandomFill((int)(W * H * FillRatio));
 
         Generator.ResetRng(Seed);
         Generator.Xmax = RArea.W;
         Generator.Ymax = RArea.H;
         Generator.vrs = Virus;
 
-        Agents.FillWithGenerator(Peoples,Generator,true);
+        Agents.FillWithGenerator(Peoples, Generator, true);
         Agents.InfectNPeoples(InfectedAtStart);
         Agents.VaccinateNPeoples(Vaccinate);
 
@@ -64,9 +64,9 @@ public class Area
 
     public void Reset()
     {
-        
+
         RArea.ResetField();
-        RArea.RandomFill((int)(RArea.W * RArea.H *0.1));
+        RArea.RandomFill((int)(RArea.W * RArea.H * 0.1));
 
         Generator.ResetRng();
         Generator.Xmax = RArea.W;
@@ -96,7 +96,7 @@ public class Area
     public void Run1()
     {
         RArea.Run(false);
-        Agents.Run(RArea,false);
+        Agents.Run(RArea, false);
 
         CountOfSuspected.Add(Agents.CountOfSuspected);
         CountOfExposed.Add(Agents.CountOfExposed);
@@ -125,7 +125,23 @@ public class Area
     public List<int> CountOfSuspected { get; set; } = new List<int>();
     public List<int> CountOfExposed { get; set; } = new List<int>();
     public List<int> CountOfInfected { get; set; } = new List<int>();
-    public List<int> CountOfRecovered{ get; set; } = new List<int>();
+    public List<int> CountOfRecovered { get; set; } = new List<int>();
     public List<int> CountOfDead { get; set; } = new List<int>();
     public List<int> CountOfVaccinated { get; set; } = new List<int>();
+
+    public enum CovidStateMonitor { Suspected=0, Exposed, Infected, Recovered, Dead, Vaccinated };
+
+    public List<int> ListByState(CovidStateMonitor state)
+    {
+        switch (state)
+        {
+            case CovidStateMonitor.Suspected: return CountOfSuspected;
+            case CovidStateMonitor.Exposed: return CountOfExposed;
+            case CovidStateMonitor.Infected: return CountOfInfected;
+            case CovidStateMonitor.Recovered: return CountOfRecovered;
+            case CovidStateMonitor.Dead: return CountOfDead;
+            case CovidStateMonitor.Vaccinated: return CountOfVaccinated;
+            default: return new List<int>();
+        }
+    }
 }

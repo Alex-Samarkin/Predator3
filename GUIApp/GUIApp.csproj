@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="bin\Debug\net7.0-windows\temp.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PLibrary1\PLibrary1.csproj" />
   </ItemGroup>
 

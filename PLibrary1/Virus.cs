@@ -22,11 +22,11 @@ public class Virus
     /// <summary>
     /// время инкубационного периода (среднее)
     /// </summary>
-    public double ExposedDuration { get; set; } = 14;
+    public double ExposedDuration { get; set; } = 10;
     /// <summary>
     /// время течения заболевания после инкубационного периода
     /// </summary>
-    public double InfectedDuration { get; set; } = 14;
+    public double InfectedDuration { get; set; } = 16;
     /// <summary>
     /// время иммунитета после заболевания или вакцинации
     /// </summary>
@@ -34,7 +34,7 @@ public class Virus
     /// <summary>
     /// вероятность заболевания приконтакте с носителем
     /// </summary>
-    public double Kinf { get; set; } = 0.3;
+    public double Kinf { get; set; } = 0.8;
     /// <summary>
     /// вероятность смерти после заболевания
     /// </summary>
