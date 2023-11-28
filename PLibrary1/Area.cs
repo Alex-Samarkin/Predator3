@@ -112,6 +112,7 @@ public class Area
         for (int i = 0; i < N; i++)
         {
             RArea.Run(false);
+            Agents.Run(RArea, false); //!!!
         }
         RArea.Plot();
         Agents.Plot(RArea);

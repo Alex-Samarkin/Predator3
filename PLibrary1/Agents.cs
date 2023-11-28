@@ -25,9 +25,9 @@ public class Agents
     public int Count => Items.Count;
 
     public double MaxDa { get; set; } = 0.2;
-    public double MaxDAngle { get; set; } = 30.0 * Math.PI / 180.0;
+    public double MaxDAngle { get; set; } = 45.0 * Math.PI / 180.0;
     public double Maxa { get; set; } = 2;
-    public double MaxV { get; set; } = 10;
+    public double MaxV { get; set; } = 7;
 
     public double DistanceToInfection { get; set; } = 4;
 

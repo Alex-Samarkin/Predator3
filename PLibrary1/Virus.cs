@@ -22,23 +22,23 @@ public class Virus
     /// <summary>
     /// время инкубационного периода (среднее)
     /// </summary>
-    public double ExposedDuration { get; set; } = 10;
+    public double ExposedDuration { get; set; } = 14;
     /// <summary>
     /// время течения заболевания после инкубационного периода
     /// </summary>
-    public double InfectedDuration { get; set; } = 16;
+    public double InfectedDuration { get; set; } = 24;
     /// <summary>
     /// время иммунитета после заболевания или вакцинации
     /// </summary>
-    public double ImmunityDuration { get; set; } = 120;
+    public double ImmunityDuration { get; set; } = 20;
     /// <summary>
     /// вероятность заболевания приконтакте с носителем
     /// </summary>
-    public double Kinf { get; set; } = 0.8;
+    public double Kinf { get; set; } = 0.15;
     /// <summary>
     /// вероятность смерти после заболевания
     /// </summary>
-    public double Kdead { get; set; } = 0.01;
+    public double Kdead { get; set; } = 0.03;
     /// <summary>
     /// вероятность тяжелого течения заболевания
     /// </summary>

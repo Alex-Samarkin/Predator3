@@ -60,8 +60,8 @@
             label1 = new Label();
             numericUpDown1 = new NumericUpDown();
             label2 = new Label();
-            plotView1 = new OxyPlot.WindowsForms.PlotView();
             button25 = new Button();
+            plotView1 = new OxyPlot.WindowsForms.PlotView();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -88,8 +88,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(splitContainer2);
-            splitContainer1.Size = new Size(885, 603);
-            splitContainer1.SplitterDistance = 379;
+            splitContainer1.Size = new Size(938, 667);
+            splitContainer1.SplitterDistance = 320;
             splitContainer1.TabIndex = 0;
             // 
             // propertyGrid1
@@ -97,7 +97,7 @@
             propertyGrid1.Dock = DockStyle.Fill;
             propertyGrid1.Location = new Point(0, 0);
             propertyGrid1.Name = "propertyGrid1";
-            propertyGrid1.Size = new Size(379, 603);
+            propertyGrid1.Size = new Size(320, 667);
             propertyGrid1.TabIndex = 0;
             // 
             // splitContainer2
@@ -114,9 +114,10 @@
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(plotView1);
-            splitContainer2.Size = new Size(502, 603);
-            splitContainer2.SplitterDistance = 312;
+            splitContainer2.Size = new Size(614, 667);
+            splitContainer2.SplitterDistance = 254;
             splitContainer2.TabIndex = 0;
+            splitContainer2.SplitterMoved += splitContainer2_SplitterMoved;
             // 
             // flowLayoutPanel1
             // 
@@ -153,7 +154,7 @@
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(4);
-            flowLayoutPanel1.Size = new Size(502, 312);
+            flowLayoutPanel1.Size = new Size(614, 254);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // button1
@@ -218,7 +219,7 @@
             // 
             // button7
             // 
-            button7.Location = new Point(7, 36);
+            button7.Location = new Point(493, 7);
             button7.Name = "button7";
             button7.Size = new Size(75, 23);
             button7.TabIndex = 6;
@@ -228,7 +229,7 @@
             // 
             // button8
             // 
-            button8.Location = new Point(88, 36);
+            button8.Location = new Point(7, 36);
             button8.Name = "button8";
             button8.Size = new Size(75, 23);
             button8.TabIndex = 7;
@@ -238,7 +239,7 @@
             // 
             // button9
             // 
-            button9.Location = new Point(169, 36);
+            button9.Location = new Point(88, 36);
             button9.Name = "button9";
             button9.Size = new Size(75, 23);
             button9.TabIndex = 8;
@@ -248,7 +249,7 @@
             // 
             // button10
             // 
-            button10.Location = new Point(250, 36);
+            button10.Location = new Point(169, 36);
             button10.Name = "button10";
             button10.Size = new Size(75, 23);
             button10.TabIndex = 9;
@@ -258,7 +259,7 @@
             // 
             // button11
             // 
-            button11.Location = new Point(331, 36);
+            button11.Location = new Point(250, 36);
             button11.Name = "button11";
             button11.Size = new Size(75, 23);
             button11.TabIndex = 10;
@@ -268,7 +269,7 @@
             // 
             // button12
             // 
-            button12.Location = new Point(412, 36);
+            button12.Location = new Point(331, 36);
             button12.Name = "button12";
             button12.Size = new Size(75, 23);
             button12.TabIndex = 11;
@@ -278,7 +279,7 @@
             // 
             // button13
             // 
-            button13.Location = new Point(7, 65);
+            button13.Location = new Point(412, 36);
             button13.Name = "button13";
             button13.Size = new Size(75, 23);
             button13.TabIndex = 12;
@@ -288,7 +289,7 @@
             // 
             // button14
             // 
-            button14.Location = new Point(88, 65);
+            button14.Location = new Point(493, 36);
             button14.Name = "button14";
             button14.Size = new Size(75, 23);
             button14.TabIndex = 13;
@@ -298,7 +299,7 @@
             // 
             // button15
             // 
-            button15.Location = new Point(169, 65);
+            button15.Location = new Point(7, 65);
             button15.Name = "button15";
             button15.Size = new Size(75, 23);
             button15.TabIndex = 14;
@@ -308,7 +309,7 @@
             // 
             // button16
             // 
-            button16.Location = new Point(250, 65);
+            button16.Location = new Point(88, 65);
             button16.Name = "button16";
             button16.Size = new Size(75, 23);
             button16.TabIndex = 15;
@@ -319,7 +320,7 @@
             // button17
             // 
             flowLayoutPanel1.SetFlowBreak(button17, true);
-            button17.Location = new Point(331, 65);
+            button17.Location = new Point(169, 65);
             button17.Name = "button17";
             button17.Size = new Size(75, 23);
             button17.TabIndex = 17;
@@ -437,19 +438,6 @@
             label2.TabIndex = 27;
             label2.Text = "time/S/E/I/R/D";
             // 
-            // plotView1
-            // 
-            plotView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            plotView1.Location = new Point(7, 3);
-            plotView1.Name = "plotView1";
-            plotView1.PanCursor = Cursors.Hand;
-            plotView1.Size = new Size(492, 281);
-            plotView1.TabIndex = 0;
-            plotView1.Text = "plotView1";
-            plotView1.ZoomHorizontalCursor = Cursors.SizeWE;
-            plotView1.ZoomRectangleCursor = Cursors.SizeNWSE;
-            plotView1.ZoomVerticalCursor = Cursors.SizeNS;
-            // 
             // button25
             // 
             button25.Location = new Point(247, 174);
@@ -460,11 +448,24 @@
             button25.UseVisualStyleBackColor = true;
             button25.Click += button25_Click;
             // 
+            // plotView1
+            // 
+            plotView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            plotView1.Location = new Point(7, 3);
+            plotView1.Name = "plotView1";
+            plotView1.PanCursor = Cursors.Hand;
+            plotView1.Size = new Size(604, 403);
+            plotView1.TabIndex = 0;
+            plotView1.Text = "plotView1";
+            plotView1.ZoomHorizontalCursor = Cursors.SizeWE;
+            plotView1.ZoomRectangleCursor = Cursors.SizeNWSE;
+            plotView1.ZoomVerticalCursor = Cursors.SizeNS;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(885, 603);
+            ClientSize = new Size(938, 667);
             Controls.Add(splitContainer1);
             Name = "Form1";
             Text = "Form1";

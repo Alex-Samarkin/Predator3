@@ -177,6 +177,7 @@ namespace GUIApp
         {
             Region60.Run1();
             label2.Text = Region60.Monitor();
+            PlotSEIR();
         }
 
         private void button23_Click(object sender, EventArgs e)
@@ -285,6 +286,11 @@ namespace GUIApp
         {
             var file = "temp.csv";
             File.WriteAllText(file, Region60.ToCSV());
+        }
+
+        private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
         }
     }
 }
